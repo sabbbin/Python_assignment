@@ -1,4 +1,7 @@
+
+
 def inputFun():
+ 
     while 1:
         priority=input('Enter your priority: High or Low :  ')
         subject=input('Enter subject of appointment within 30 charaters:  ')
@@ -61,13 +64,16 @@ def showRecord():
     if (file_exists):
         print('Priority        Date            start       End     Subject')
         print('---------       -----           -----       ----    --------------------------')
-        with open('diary.txt','r') as f:
-            for i in f.readlines():
-                eachrecord=i.split(' ')
-                eachelem=eachrecord[0][:-1].split('\t')
-               
-                print('{:6s}          {:12s}     {:6s}      {:6s}  {}'.format(eachelem[0],eachelem[1],eachelem[2],eachelem[3],eachelem[4]))
-        f.close()
+        file_exists = os.path.exists('diary.txt')
+        if (file_exists):
+            with open('diary.txt','r') as f:
+                for i in f.readlines():
+                    eachrecord=i.split(' ')
+                    eachelem=eachrecord[0][:-1].split('\t')
+                
+                    print('{:6s}          {:12s}     {:6s}      {:6s}  {}'.format(eachelem[0],eachelem[1],eachelem[2],eachelem[3],eachelem[4]))
+            f.close()
+    
     else:
         print('NO record to show ')
     
@@ -124,7 +130,8 @@ def sortRecord():
             inp=input('Press End to stop or key to continue sorting')
             if (inp.lower()=='end'):
                 break
-
+    else:
+        print('No record to show')
         
         
            
@@ -146,7 +153,7 @@ if __name__=='__main__':
             sortRecord()
         else:
             break
-
+      
 
 
     
